@@ -19,7 +19,8 @@
     "part1": "node start.js part1.yml",
     "part2": "node start.js part2.yml",
     "part3": "node start.js part3.yml",
-    "part4": "node start.js part4.yml"
+    "part4": "node start.js part4.yml",
+    "steps": "node start.js steps.yml"
   },
   "repository": {
     "type": "git",

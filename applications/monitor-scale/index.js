@@ -33,7 +33,7 @@ app.post('/scale', function (req, res) {
   var url = "http://127.0.0.1:2345/apis/apps/v1/namespaces/default/deployments/puzzle/scale";
   var putBody = {
     kind:"Scale",
-    apiVersion:"apps/v1",
+    apiVersion:"autoscaling/v1",
     metadata: { 
       name:"puzzle",
       namespace:"default"
@@ -45,7 +45,7 @@ app.post('/scale', function (req, res) {
   };
   putBody.spec.replicas = scale;
 
-  request({ url: url, method: 'PUT', json: putBody}, function (err, httpResponse, body) {
+  request({ url: url, method: 'PATCH', headers: {'Content-Type': 'application/merge-patch+json'},json: putBody}, function (err, httpResponse, body) {
     if (err) {
       console.error('Failed to scale:', err);
       next(err);

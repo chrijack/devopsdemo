@@ -1,9 +1,22 @@
 parts:
-
-  - name: Part 3
-    intro: This part will have us setup the various applications that will present the crossword puzzle.  We will run a sample etcd cluster as a cache, a pages application containing the front-end, a crossword server using mongodb, and a monitoring and scaling server application. 
+  - name: Puzzle only
+    intro: Deploy just the puzzle app and all kubernetes services. 
     steps:
-    
+      - cap: Start up the Kubernetes cluster with Minikube, giving it some extra resources.
+        com: minikube start --memory 8000 --cpus 4 --kubernetes-version v1.16.2
+
+      - cap: Enable the Minikube add-ons Heapster and Ingress.
+        com: minikube addons enable heapster; minikube addons enable ingress
+
+      - cap: Set up the cluster registry by applying a .yaml manifest file.
+        com: kubectl apply -f manifests/registry.yaml
+
+      - cap: Wait for the registry to finish deploying. Note that this may take several minutes.
+        com: kubectl rollout status deployments/registry
+
+      - cap: View the registry user interface in a web browser.
+        com: minikube service registry-ui
+        
       - cap: Initialize Helm. This will install Tiller (Helm's server) into our Kubernetes cluster. 
         com: helm init --wait --debug; kubectl rollout status deploy/tiller-deploy -n kube-system
 

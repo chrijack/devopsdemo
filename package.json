@@ -20,7 +20,8 @@
     "part2": "node start.js part2.yml",
     "part3": "node start.js part3.yml",
     "part4": "node start.js part4.yml",
-    "steps": "node start.js steps.yml"
+    "steps": "node start.js steps.yml",
+    "puzzleonly": "node start.js puzzleonly.yml"
   },
   "repository": {
     "type": "git",

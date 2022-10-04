@@ -10,7 +10,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/data/jenkins/"
+    path: "/hosthome/jenkins/"
 
 ---
 
@@ -104,7 +104,7 @@ spec:
     spec:
       serviceAccountName: jenkins
       initContainers:
-      - image: lachlanevenson/k8s-kubectl:v1.15.12
+      - image: lachlanevenson/k8s-kubectl:v1.16.2
         name: kubectl-config
         command:
         - "/bin/sh"

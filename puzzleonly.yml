@@ -3,10 +3,10 @@ parts:
     intro: Deploy just the puzzle app and all kubernetes services. 
     steps:
       - cap: Start up the Kubernetes cluster with Minikube, giving it some extra resources.
-        com: minikube start --memory 8000 --cpus 4 --kubernetes-version v1.16.2
+        com: minikube start --memory 8000 --cpus 4 --vm-driver=virtualbox --kubernetes-version v1.16.2
 
       - cap: Enable the Minikube add-ons Heapster and Ingress.
-        com: minikube addons enable heapster; minikube addons enable ingress
+        com: minikube addons enable metrics-server; minikube addons enable ingress
 
       - cap: Set up the cluster registry by applying a .yaml manifest file.
         com: kubectl apply -f manifests/registry.yaml
